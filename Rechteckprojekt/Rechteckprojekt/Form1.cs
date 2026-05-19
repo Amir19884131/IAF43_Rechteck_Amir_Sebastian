@@ -11,5 +11,10 @@ namespace Rechteckprojekt
         {
             Console.Write("Döner Bober");
         }
+
+        private void btnZoomOut_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
