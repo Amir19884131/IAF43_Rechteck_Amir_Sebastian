@@ -67,8 +67,8 @@ namespace Rechteckprojekt
         public void Drehen()
         {
             double zwischenspeicher = hoehe; // methode zum drehen des rechteckes ändert einfach höhe mit breite und breite mit höhe
-            hoehe = breite;
-            breite = zwischenspeicher;
+            Hoehe = breite;
+            Breite = zwischenspeicher;
         }
     }
 }
