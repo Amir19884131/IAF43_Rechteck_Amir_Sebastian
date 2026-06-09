@@ -93,6 +93,7 @@
             tbxBreite.Name = "tbxBreite";
             tbxBreite.Size = new Size(88, 23);
             tbxBreite.TabIndex = 3;
+            tbxBreite.TextChanged += tbxBreite_TextChanged;
             // 
             // tbxHoehe
             // 
@@ -101,6 +102,7 @@
             tbxHoehe.Name = "tbxHoehe";
             tbxHoehe.Size = new Size(88, 23);
             tbxHoehe.TabIndex = 4;
+            tbxHoehe.TextChanged += tbxHoehe_TextChanged;
             // 
             // tbxUmfang
             // 

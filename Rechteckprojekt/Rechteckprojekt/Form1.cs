@@ -7,6 +7,7 @@ namespace Rechteckprojekt
         {
             InitializeComponent();
         }
+        Rechteck r = new Rechteck(); // erstellt objekt
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -15,39 +16,100 @@ namespace Rechteckprojekt
 
         private void btnZoomOut_Click(object sender, EventArgs e)
         {
-            Rechteck r = new Rechteck();
             try
             {
-                r.Hoehe = Convert.ToDouble(tbxHoehe.Text);
+                r.Hoehe = Convert.ToDouble(tbxHoehe.Text); // speichert werte aus den textboxen in den jeweiligen attributen wo sie auch überprüft werden
                 r.Breite = Convert.ToDouble(tbxBreite.Text);
 
-                r.Zoomen(0.5);
+                r.Zoomen(1.0 / 1.1); // ruft die methode für den zoom auf und gibt den faktor 1.0 / 1.1 damit wenn man 1 mal zoom in und dann zoom out macht immer die selben werte hat mit 0.9 wären immer andere zahlen da
 
-                tbxHoehe.Text = r.Hoehe.ToString();
-                tbxBreite.Text = r.Breite.ToString();
+                tbxHoehe.Text = Math.Round(r.Hoehe, 2).ToString(); // zeigt die werte wieder in der textbox an und zeigt nur 2 nachkommastellen an
+                tbxBreite.Text = Math.Round(r.Breite, 2).ToString();
             }
-            catch
+            catch (FormatException) // fehler der getriggert wird wenn ein compiler fehler kommt wenn die textbox leer ist oder buchstaben eingegeben werden
             {
-                MessageBox.Show("Bitte geben Sie eine Zahl ein!");
+                MessageBox.Show("Bitte geben Sie eine gültige Zahl ein!");
+            }
+            catch (Exception ex) // fehler der die direkte fehlermeldung aus der exception beim public attribut hier ausgibt 
+            {
+                MessageBox.Show("ACHTUNG! " + ex.Message);
             }
         }
 
         private void btnZoomIn_Click(object sender, EventArgs e)
         {
-            Rechteck r = new Rechteck();
             try
             {
-                r.Hoehe = Convert.ToDouble(tbxHoehe.Text);
+                r.Hoehe = Convert.ToDouble(tbxHoehe.Text); // speichert werte aus den textboxen in den jeweiligen attributen wo sie auch überprüft werden
                 r.Breite = Convert.ToDouble(tbxBreite.Text);
 
-                r.Zoomen(1.5);
+                r.Zoomen(1.1); // ruft die methode für den zoom auf und gibt den faktor 1.1 mit damit reingezoomt wird 
 
-                tbxHoehe.Text = Math.Round(r.Hoehe,2).ToString();
-                tbxBreite.Text = Math.Round(r.Breite,2).ToString();
+
+                tbxHoehe.Text = Math.Round(r.Hoehe, 2).ToString(); // zeigt die werte wieder in der textbox an und zeigt nur 2 nachkommastellen an
+                tbxBreite.Text = Math.Round(r.Breite, 2).ToString();
             }
-            catch
+            catch (FormatException) // fehler der getriggert wird wenn ein compiler fehler kommt wenn die textbox leer ist oder buchstaben eingegeben werden
             {
-                MessageBox.Show("Bitte geben Sie eine Zahl ein!");
+                MessageBox.Show("Bitte geben Sie eine gültige Zahl ein!");
+            }
+            catch (Exception ex) // fehler der die direkte fehlermeldung aus der exception beim public attribut hier ausgibt 
+            {
+                MessageBox.Show("ACHTUNG! " + ex.Message);
+            }
+        }
+        private void AktualisiereGrafik()
+        {
+            btnRechteck.Width = Convert.ToInt32(r.Breite * 37.8); // für die größe der rechtecks zuständig länge und höhe damit es auch 1 cm ist auf dem bildschirm
+            btnRechteck.Height = Convert.ToInt32(r.Hoehe * 37.8);
+            btnRechteck.Left = 1050 - (btnRechteck.Width / 2); // für die zentrierung zuständig damit es schön dort rechts in der mitte ist 
+            btnRechteck.Top = 445 - (btnRechteck.Height / 2);
+        }
+        private void tbxBreite_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(tbxBreite.Text)) // macht nicht weiter wenn das feld leer ist ist praktisch wenn der user eine ganze zahl neu schreiben will anstatt 200 eine 100 
+                return;
+
+            try
+            {
+                r.Breite = Convert.ToDouble(tbxBreite.Text); // speichert wert aus den textbox in dem attribut wo es auch überprüft werden
+                tbxUmfang.Text = Math.Round(r.Umfang, 2).ToString(); // triggert die schreibgeschützen eigenschaften die die textboxen mit den inhalten füllen
+                tbxFlaeche.Text = Math.Round(r.Flaeche, 2).ToString();
+                tbxDiagonaleCM.Text = Math.Round(r.Diagonale, 2).ToString();
+                tbxDiagonaleZOLL.Text = Math.Round(r.Diagonale / 2.54, 2).ToString();
+                AktualisiereGrafik();
+            }
+            catch (FormatException) // fehler der getriggert wird wenn ein compiler fehler kommt wenn die textbox leer ist oder buchstaben eingegeben werden
+            {
+                MessageBox.Show("Bitte geben Sie eine gültige Zahl ein!");
+            }
+            catch (Exception ex) // fehler der die direkte fehlermeldung aus der exception beim public attribut hier ausgibt 
+            {
+                MessageBox.Show("ACHTUNG! " + ex.Message);
+            }
+        }
+
+        private void tbxHoehe_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(tbxHoehe.Text)) // macht nicht weiter wenn das feld leer ist ist praktisch wenn der user eine ganze zahl neu schreiben will anstatt 200 eine 100 
+                return;
+
+            try
+            {
+                r.Hoehe = Convert.ToDouble(tbxHoehe.Text); // speichert wert aus den textbox in dem attribut wo es auch überprüft werden
+                tbxUmfang.Text = Math.Round(r.Umfang, 2).ToString(); // triggert die schreibgeschützen eigenschaften die die textboxen mit den inhalten füllen
+                tbxFlaeche.Text = Math.Round(r.Flaeche, 2).ToString();
+                tbxDiagonaleCM.Text = Math.Round(r.Diagonale, 2).ToString();
+                tbxDiagonaleZOLL.Text = Math.Round(r.Diagonale / 2.54, 2).ToString();
+                AktualisiereGrafik();
+            }
+            catch (FormatException) // fehler der getriggert wird wenn ein compiler fehler kommt wenn die textbox leer ist oder buchstaben eingegeben werden
+            {
+                MessageBox.Show("Bitte geben Sie eine gültige Zahl ein!");
+            }
+            catch (Exception ex) // fehler der die direkte fehlermeldung aus der exception beim public attribut hier ausgibt 
+            {
+                MessageBox.Show("ACHTUNG! " + ex.Message);
             }
         }
     }
