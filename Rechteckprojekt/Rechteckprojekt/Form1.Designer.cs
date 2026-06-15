@@ -294,6 +294,7 @@
             tbxTextinhalt.Name = "tbxTextinhalt";
             tbxTextinhalt.Size = new Size(139, 80);
             tbxTextinhalt.TabIndex = 25;
+            tbxTextinhalt.TextChanged += tbxTextinhalt_TextChanged;
             // 
             // lblTextinhalt
             // 

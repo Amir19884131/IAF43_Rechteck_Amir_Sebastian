@@ -196,5 +196,17 @@ namespace Rechteckprojekt
                 MessageBox.Show("ACHTUNG! " + ex.Message);
             }
         }
+
+        private void tbxTextinhalt_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                r.Textinhalt = tbxTextinhalt.Text; // speichert eingegebenen text im objekt
+                btnRechteck.Text = r.Textinhalt; // und gibt den text hier wieder zurück damit es im rechteck angezeigt wird
+            }
+            catch (Exception) // nur zur absicherung
+            {
+            }
+        }
     }
 }
