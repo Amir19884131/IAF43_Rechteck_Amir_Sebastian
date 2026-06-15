@@ -180,6 +180,7 @@ namespace Rechteckprojekt
         {
             if (string.IsNullOrWhiteSpace(tbxRand.Text)) // macht nicht mehr weiter mti dem code damit keine fehlermeldung kommt wenn man seine eingabe komplett löscht
             {
+                btnRechteck.FlatAppearance.BorderSize = 1; // stellt den rand auf den normalen rand zurück wenn der inhalt gelöscht wird
                 return;
             }
             try
