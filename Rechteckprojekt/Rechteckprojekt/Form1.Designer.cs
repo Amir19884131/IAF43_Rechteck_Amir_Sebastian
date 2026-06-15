@@ -85,6 +85,7 @@
             btnDrehen.TabIndex = 2;
             btnDrehen.Text = "Drehen";
             btnDrehen.UseVisualStyleBackColor = true;
+            btnDrehen.Click += btnDrehen_Click;
             // 
             // tbxBreite
             // 

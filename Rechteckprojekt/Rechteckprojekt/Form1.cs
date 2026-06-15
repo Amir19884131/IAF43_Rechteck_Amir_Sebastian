@@ -112,5 +112,25 @@ namespace Rechteckprojekt
                 MessageBox.Show("ACHTUNG! " + ex.Message);
             }
         }
+
+        private void btnDrehen_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                r.Hoehe = Convert.ToDouble(tbxHoehe.Text); // speichert werte aus den textboxen in den jeweiligen attributen wo sie auch überprüft werden
+                r.Breite = Convert.ToDouble(tbxBreite.Text);
+                r.Drehen(); // ruft die methode zum drehen auf und die dreht das rechteck einfach
+                tbxHoehe.Text = Math.Round(r.Hoehe, 2).ToString(); // zeigt die werte wieder in der textbox an und zeigt nur 2 nachkommastellen an
+                tbxBreite.Text = Math.Round(r.Breite, 2).ToString();
+            }
+            catch (FormatException) // fehler der getriggert wird wenn ein compiler fehler kommt wenn die textbox leer ist oder buchstaben eingegeben werden
+            {
+                MessageBox.Show("Bitte geben Sie eine gültige Zahl ein!");
+            }
+            catch (Exception ex) // fehler der die direkte fehlermeldung aus der exception beim public attribut hier ausgibt 
+            {
+                MessageBox.Show("ACHTUNG! " + ex.Message);
+            }
+        }
     }
 }
