@@ -267,6 +267,7 @@
             cbxFarben.Name = "cbxFarben";
             cbxFarben.Size = new Size(138, 23);
             cbxFarben.TabIndex = 22;
+            cbxFarben.SelectedIndexChanged += cbxFarben_SelectedIndexChanged;
             // 
             // lblExtra
             // 
