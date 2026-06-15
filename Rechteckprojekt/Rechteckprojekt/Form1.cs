@@ -6,6 +6,7 @@ namespace Rechteckprojekt
         public Form1()
         {
             InitializeComponent();
+            btnRechteck.FlatStyle = FlatStyle.Flat; // rechteck eigentlich button auf flat setzen damit man nachher den rand ändern kann
         }
         Rechteck r = new Rechteck(); // erstellt objekt
 
@@ -172,6 +173,27 @@ namespace Rechteckprojekt
             }
             catch (Exception) // nur zur absicherung
             {
+            }
+        }
+
+        private void tbxRand_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(tbxRand.Text)) // macht nicht mehr weiter mti dem code damit keine fehlermeldung kommt wenn man seine eingabe komplett löscht
+            {
+                return;
+            }
+            try
+            {
+                r.Rand = Convert.ToDouble(tbxRand.Text.Replace('.', ',')); // falls der user einen . anstatt einen , setzt ist das dank replace kein problem es wird perfekt umgewandelt 
+                btnRechteck.FlatAppearance.BorderSize = Convert.ToInt32(r.Rand * 37.8); // gibt dem rechteck eigentlich button den rand in cm 
+            }
+            catch (FormatException) // fehler der getriggert wird wenn ein compiler fehler kommt wenn die textbox leer ist oder buchstaben eingegeben werden
+            {
+                MessageBox.Show("Bitte geben Sie eine gültige Zahl ein!");
+            }
+            catch (Exception ex) // fehler der die direkte fehlermeldung aus der exception beim public attribut hier ausgibt 
+            {
+                MessageBox.Show("ACHTUNG! " + ex.Message);
             }
         }
     }

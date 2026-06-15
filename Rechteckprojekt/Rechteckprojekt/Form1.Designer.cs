@@ -310,6 +310,7 @@
             tbxRand.Name = "tbxRand";
             tbxRand.Size = new Size(108, 23);
             tbxRand.TabIndex = 27;
+            tbxRand.TextChanged += tbxRand_TextChanged;
             // 
             // lblRandCM
             // 
