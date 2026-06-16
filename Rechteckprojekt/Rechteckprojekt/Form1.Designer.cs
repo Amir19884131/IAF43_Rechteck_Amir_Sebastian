@@ -399,20 +399,23 @@
             // mnuOpen
             // 
             mnuOpen.Name = "mnuOpen";
-            mnuOpen.Size = new Size(157, 22);
+            mnuOpen.Size = new Size(180, 22);
             mnuOpen.Text = "Öffnen";
+            mnuOpen.Click += mnuOpen_Click;
             // 
             // mnuSave
             // 
             mnuSave.Name = "mnuSave";
-            mnuSave.Size = new Size(157, 22);
+            mnuSave.Size = new Size(180, 22);
             mnuSave.Text = "Speichern";
+            mnuSave.Click += mnuSave_Click;
             // 
             // mnuSaveUnder
             // 
             mnuSaveUnder.Name = "mnuSaveUnder";
-            mnuSaveUnder.Size = new Size(157, 22);
+            mnuSaveUnder.Size = new Size(180, 22);
             mnuSaveUnder.Text = "Speichern unter";
+            mnuSaveUnder.Click += mnuSaveUnder_Click;
             // 
             // Form1
             // 

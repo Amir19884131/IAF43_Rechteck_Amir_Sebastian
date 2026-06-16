@@ -292,7 +292,80 @@ namespace Rechteckprojekt
                 cbxFarben.SelectedIndex = r.Farbe;
                 AktualisiereGrafik(); // updated das visuelle rechteck
             }
+        }
 
+        private void mnuOpen_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dlgOpen = new OpenFileDialog(); // openfiledialog instanziieren
+            dlgOpen.InitialDirectory = "C:\\"; // atribute setzen
+            dlgOpen.Title = "Rechteckliste öffnen";
+            dlgOpen.Filter = "Textdatei|*.txt"; // das man nur textdateien sehen/öffnen kann
+            if (dlgOpen.ShowDialog() == DialogResult.OK) // dialog anzeigen und ergebnis prüfen
+            {
+                dateiname = dlgOpen.FileName; // pfad merken
+                if (File.Exists(dateiname))
+                {
+                    StreamReader sr = new StreamReader(dateiname);
+                    R.Clear(); // liste leeren für neue daten
+                    while (!sr.EndOfStream)
+                    {
+                        string zeile = sr.ReadLine();
+                        string[] teile = zeile.Split(';');
+                        if (teile.Length == 5) // guckt ob alle daten gegeben sind und füllt sie dann aus 
+                        {
+                            r = new Rechteck();
+                            r.Hoehe = Convert.ToDouble(teile[0]);
+                            r.Breite = Convert.ToDouble(teile[1]);
+                            r.Rand = Convert.ToDouble(teile[2]);
+                            r.Textinhalt = teile[3];
+                            r.Farbe = Convert.ToInt32(teile[4]);
+                            R.Add(r); // fügt das fertige rechteck in die liste hinzu
+                        }
+                    }
+                    sr.Close(); // schließt streamreader wieder 
+                    MessageBox.Show("Datei wurde erfolgreich geladen!"); // box kommt mit der einer nachricht das es erfolgreich war
+                    lbxRechtecke.DataSource = null; // listbox updaten
+                    lbxRechtecke.DataSource = R;
+                    lbxRechtecke.ClearSelected();
+                }
+            }
+        }
+
+        private void mnuSave_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(dateiname)) // guckt ob er gerade schon einen dateinamen hat wenn nein geht er zu speichern unter
+            {
+                mnuSaveUnder_Click(sender, e);
+            }
+            else
+            {
+                StreamWriter sw = new StreamWriter(dateiname); // speichert die werte und trennt sie mit einem ; wichtig für split 
+                foreach (Rechteck wert in R)
+                {
+                    sw.WriteLine($"{wert.Hoehe};{wert.Breite};{wert.Rand};{wert.Textinhalt};{wert.Farbe}");
+                }
+                sw.Close(); // schließt streamwriter wieder 
+                MessageBox.Show("Erfolgreich gespeichert!"); // box kommt mit der einer nachricht das es erfolgreich war
+            }
+        }
+
+        private void mnuSaveUnder_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog dlgSave = new SaveFileDialog(); // savefiledialog instanziieren
+            dlgSave.InitialDirectory = "C:\\";
+            dlgSave.Title = "Rechteckliste speichern unter...";
+            dlgSave.Filter = "Textdatei|*.txt"; // das man direkt als textdatei speichert
+            if (dlgSave.ShowDialog() == DialogResult.OK)
+            {
+                dateiname = dlgSave.FileName; // pfad merken
+                StreamWriter sw = new StreamWriter(dateiname); // speichert die werte und trennt sie mit einem ; wichtig für split 
+                foreach (Rechteck recht in R)
+                {
+                    sw.WriteLine($"{recht.Hoehe};{recht.Breite};{recht.Rand};{recht.Textinhalt};{recht.Farbe}");
+                }
+                sw.Close(); // schließt streamwriter wieder 
+                MessageBox.Show($"Erfolgreich unter {dateiname} gespeichert!"); // box kommt mit der einer nachricht das es erfolgreich war
+            }
         }
     }
 }
