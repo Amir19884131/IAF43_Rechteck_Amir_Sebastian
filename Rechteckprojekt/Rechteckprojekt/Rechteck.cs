@@ -90,5 +90,9 @@ namespace Rechteckprojekt
             Hoehe = breite;
             Breite = zwischenspeicher;
         }
+        public override string ToString()
+        {
+            return $"Höhe:{Hoehe}, Breite:{Breite}"; // für lbx anzeige  
+        }
     }
 }
