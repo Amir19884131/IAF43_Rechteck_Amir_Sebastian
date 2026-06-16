@@ -1,6 +1,6 @@
 ﻿namespace Rechteckprojekt
 {
-    partial class Form1
+    partial class GUI
     {
         /// <summary>
         ///  Required designer variable.
@@ -417,7 +417,7 @@
             mnuSaveUnder.Text = "Speichern unter";
             mnuSaveUnder.Click += mnuSaveUnder_Click;
             // 
-            // Form1
+            // GUI
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -458,8 +458,8 @@
             Controls.Add(btnZoomOut);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
-            Name = "Form1";
-            Text = "Form1";
+            Name = "GUI";
+            Text = "Rechteckprogramm";
             Load += Form1_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
