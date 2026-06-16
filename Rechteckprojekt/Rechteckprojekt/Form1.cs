@@ -268,5 +268,30 @@ namespace Rechteckprojekt
                 }
             }
         }
+
+        private void lbxRechtecke_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = lbxRechtecke.SelectedIndex; // guckt welche zeile
+            if (index < 0 || index >= R.Count) // damit die tbx leer sind nachdem man ein recheteck addet hat
+            {
+                r = new Rechteck(); // damit keine fehler beim adden passieren
+                tbxHoehe.Text = "";
+                tbxBreite.Text = "";
+                tbxRand.Text = "";
+                tbxTextinhalt.Text = "";
+                cbxFarben.SelectedIndex = 0;
+                return;
+            }
+            else
+            {
+                r = R[index];
+                tbxHoehe.Text = r.Hoehe.ToString(); // zeigt daten in tbx an
+                tbxBreite.Text = r.Breite.ToString();
+                tbxRand.Text = Math.Round(r.Rand, 2).ToString();
+                tbxTextinhalt.Text = r.Textinhalt;
+                cbxFarben.SelectedIndex = r.Farbe;
+                AktualisiereGrafik(); // updated das visuelle rechteck
+            }
+        }
     }
 }
