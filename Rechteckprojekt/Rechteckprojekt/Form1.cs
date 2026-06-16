@@ -292,6 +292,7 @@ namespace Rechteckprojekt
                 cbxFarben.SelectedIndex = r.Farbe;
                 AktualisiereGrafik(); // updated das visuelle rechteck
             }
+
         }
     }
 }

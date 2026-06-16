@@ -369,6 +369,7 @@
             lbxRechtecke.Name = "lbxRechtecke";
             lbxRechtecke.Size = new Size(138, 94);
             lbxRechtecke.TabIndex = 32;
+            lbxRechtecke.SelectedIndexChanged += lbxRechtecke_SelectedIndexChanged;
             // 
             // lblRechtecke
             // 
