@@ -349,6 +349,7 @@
             btnAdd.TabIndex = 30;
             btnAdd.Text = "+";
             btnAdd.UseVisualStyleBackColor = true;
+            btnAdd.Click += btnAdd_Click;
             // 
             // btnRemove
             // 
@@ -358,6 +359,7 @@
             btnRemove.TabIndex = 31;
             btnRemove.Text = "-";
             btnRemove.UseVisualStyleBackColor = true;
+            btnRemove.Click += btnRemove_Click;
             // 
             // lbxRechtecke
             // 
@@ -396,19 +398,19 @@
             // mnuOpen
             // 
             mnuOpen.Name = "mnuOpen";
-            mnuOpen.Size = new Size(180, 22);
+            mnuOpen.Size = new Size(157, 22);
             mnuOpen.Text = "Öffnen";
             // 
             // mnuSave
             // 
             mnuSave.Name = "mnuSave";
-            mnuSave.Size = new Size(180, 22);
+            mnuSave.Size = new Size(157, 22);
             mnuSave.Text = "Speichern";
             // 
             // mnuSaveUnder
             // 
             mnuSaveUnder.Name = "mnuSaveUnder";
-            mnuSaveUnder.Size = new Size(180, 22);
+            mnuSaveUnder.Size = new Size(157, 22);
             mnuSaveUnder.Text = "Speichern unter";
             // 
             // Form1
