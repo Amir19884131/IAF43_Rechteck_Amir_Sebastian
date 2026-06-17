@@ -239,7 +239,14 @@ namespace Rechteckprojekt
                     r.Rand = Convert.ToDouble(tbxRand.Text.Replace('.', ',')); // falls der user einen . anstatt einen , setzt ist das dank replace kein problem es wird perfekt umgewandelt 
                 }
                 r.Textinhalt = tbxTextinhalt.Text;
-                r.Farbe = cbxFarben.SelectedIndex;
+                if (cbxFarben.SelectedIndex == -1) // damit es auch weiß ist wenn er nichts eingibt 
+                {
+                    r.Farbe = 0;
+                }
+                else
+                {
+                    r.Farbe = cbxFarben.SelectedIndex;
+                }
                 R.Add(r); // fügt objekt zur liste hinzu
                 lbxRechtecke.DataSource = null; // updatet die liste
                 lbxRechtecke.DataSource = R;
