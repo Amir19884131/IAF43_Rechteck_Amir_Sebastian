@@ -133,7 +133,44 @@ namespace Rechteckprojekt
 
         private void cbxFarben_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            try
+            {
+                r.Farbe = cbxFarben.SelectedIndex; // speichert indexwert im objekt
+                int Index = r.Farbe; // und gibt dem int hier den indexwert wieder zurück damit es die richtige farbe auswählen kann und das rechteck was eigentlich ein button ist umfärben kann
+                switch (Index)
+                {
+                    case 0:
+                        btnRechteck.BackColor = Color.White;
+                        break;
+                    case 1:
+                        btnRechteck.BackColor = Color.Yellow;
+                        break;
+                    case 2:
+                        btnRechteck.BackColor = Color.Red;
+                        break;
+                    case 3:
+                        btnRechteck.BackColor = Color.Blue;
+                        break;
+                    case 4:
+                        btnRechteck.BackColor = Color.Orange;
+                        break;
+                    case 5:
+                        btnRechteck.BackColor = Color.Purple;
+                        break;
+                    case 6:
+                        btnRechteck.BackColor = Color.Black;
+                        break;
+                    case 7:
+                        btnRechteck.BackColor = Color.Gray;
+                        break;
+                    case 8:
+                        btnRechteck.BackColor = Color.Green;
+                        break;
+                }
+            }
+            catch (Exception) // nur zur absicherung
+            {
+            }
         }
 
         private void tbxTextinhalt_TextChanged(object sender, EventArgs e)
