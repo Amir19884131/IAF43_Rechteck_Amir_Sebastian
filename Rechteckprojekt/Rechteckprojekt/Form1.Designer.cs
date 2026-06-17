@@ -1,6 +1,6 @@
 ﻿namespace Rechteckprojekt
 {
-    partial class Form1
+    partial class GUI
     {
         /// <summary>
         ///  Required designer variable.
@@ -349,6 +349,7 @@
             btnAdd.TabIndex = 30;
             btnAdd.Text = "+";
             btnAdd.UseVisualStyleBackColor = true;
+            btnAdd.Click += btnAdd_Click;
             // 
             // btnRemove
             // 
@@ -358,6 +359,7 @@
             btnRemove.TabIndex = 31;
             btnRemove.Text = "-";
             btnRemove.UseVisualStyleBackColor = true;
+            btnRemove.Click += btnRemove_Click;
             // 
             // lbxRechtecke
             // 
@@ -367,6 +369,7 @@
             lbxRechtecke.Name = "lbxRechtecke";
             lbxRechtecke.Size = new Size(138, 94);
             lbxRechtecke.TabIndex = 32;
+            lbxRechtecke.SelectedIndexChanged += lbxRechtecke_SelectedIndexChanged;
             // 
             // lblRechtecke
             // 
@@ -396,22 +399,25 @@
             // mnuOpen
             // 
             mnuOpen.Name = "mnuOpen";
-            mnuOpen.Size = new Size(157, 22);
+            mnuOpen.Size = new Size(180, 22);
             mnuOpen.Text = "Öffnen";
+            mnuOpen.Click += mnuOpen_Click;
             // 
             // mnuSave
             // 
             mnuSave.Name = "mnuSave";
-            mnuSave.Size = new Size(157, 22);
+            mnuSave.Size = new Size(180, 22);
             mnuSave.Text = "Speichern";
+            mnuSave.Click += mnuSave_Click;
             // 
             // mnuSaveUnder
             // 
             mnuSaveUnder.Name = "mnuSaveUnder";
-            mnuSaveUnder.Size = new Size(157, 22);
+            mnuSaveUnder.Size = new Size(180, 22);
             mnuSaveUnder.Text = "Speichern unter";
+            mnuSaveUnder.Click += mnuSaveUnder_Click;
             // 
-            // Form1
+            // GUI
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -452,8 +458,8 @@
             Controls.Add(btnZoomOut);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
-            Name = "Form1";
-            Text = "Form1";
+            Name = "GUI";
+            Text = "Rechteckprogramm";
             Load += Form1_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
