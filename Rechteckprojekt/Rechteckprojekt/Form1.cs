@@ -8,6 +8,8 @@ namespace Rechteckprojekt
             btnRechteck.FlatStyle = FlatStyle.Flat; // rechteck eigentlich button auf flat setzen damit man nachher den rand ändern kann
         }
         Rechteck r = new Rechteck(); // erstellt objekt
+        List<Rechteck> R = new List<Rechteck>(); // erstellt liste mit objektinhalt
+        string dateiname = ""; // erstellt eien string wo der pfad gespeicht werden kann
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -70,8 +72,13 @@ namespace Rechteckprojekt
         private void tbxBreite_TextChanged(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(tbxBreite.Text)) // macht nicht weiter wenn das feld leer ist ist praktisch wenn der user eine ganze zahl neu schreiben will anstatt 200 eine 100 
+            {
+                tbxUmfang.Text = ""; // damit die tbx leer sind falls 1 wert fehlt 
+                tbxFlaeche.Text = "";
+                tbxDiagonaleCM.Text = "";
+                tbxDiagonaleZOLL.Text = "";
                 return;
-
+            }
             try
             {
                 r.Breite = Convert.ToDouble(tbxBreite.Text); // speichert wert aus den textbox in dem attribut wo es auch überprüft werden
@@ -94,8 +101,13 @@ namespace Rechteckprojekt
         private void tbxHoehe_TextChanged(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(tbxHoehe.Text)) // macht nicht weiter wenn das feld leer ist ist praktisch wenn der user eine ganze zahl neu schreiben will anstatt 200 eine 100 
+            {
+                tbxUmfang.Text = ""; // damit die tbx leer sind falls 1 wert fehlt 
+                tbxFlaeche.Text = "";
+                tbxDiagonaleCM.Text = "";
+                tbxDiagonaleZOLL.Text = "";
                 return;
-
+            }
             try
             {
                 r.Hoehe = Convert.ToDouble(tbxHoehe.Text); // speichert wert aus den textbox in dem attribut wo es auch überprüft werden
@@ -213,12 +225,49 @@ namespace Rechteckprojekt
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                r = new Rechteck(); // damit keine fehler beim adden passieren
+                r.Hoehe = Convert.ToDouble(tbxHoehe.Text); // speichert die attributewerte in den attributen 
+                r.Breite = Convert.ToDouble(tbxBreite.Text);
+                if (string.IsNullOrWhiteSpace(tbxRand.Text))
+                {
+                    r.Rand = 1.0 / 37.8;
+                }
+                else
+                {
+                    r.Rand = Convert.ToDouble(tbxRand.Text.Replace('.', ',')); // falls der user einen . anstatt einen , setzt ist das dank replace kein problem es wird perfekt umgewandelt 
+                }
+                r.Textinhalt = tbxTextinhalt.Text;
+                r.Farbe = cbxFarben.SelectedIndex;
+                R.Add(r); // fügt objekt zur liste hinzu
+                lbxRechtecke.DataSource = null; // updatet die liste
+                lbxRechtecke.DataSource = R;
+                lbxRechtecke.ClearSelected(); // damit kein rechteck mehr ausgewählt ist
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("ACHTUNG! bei Höhe und Breite müssen Zahlen stehen");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ACHTUNG! " + ex.Message);
+            }
         }
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
-
+            int index = lbxRechtecke.SelectedIndex; // guckt welche zeile
+            if (index >= 0) // guck ob etwas ausgewählt ist und löscht es nur nachdem man bei der bestätigung auf ja gedrückt hat
+            {
+                if (MessageBox.Show("Wollen sie das Rechteck wirklich löschen?", "Bestätigung", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    R.RemoveAt(index);
+                    lbxRechtecke.DataSource = null; // updatet die liste
+                    lbxRechtecke.DataSource = R;
+                    lbxRechtecke.ClearSelected(); // damit kein rechteck mehr ausgewählt ist
+                }
+            }
         }
 
         private void lbxRechtecke_SelectedIndexChanged(object sender, EventArgs e)
