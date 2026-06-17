@@ -9,41 +9,61 @@ namespace Rechteckprojekt
     internal class Rechteck
     {
         private double hoehe; // private attribute mit korrekter eingabe
-        public double Hoehe // public attribute um zu gucken ob der wert über 0 wenn nein kommt fehlermeldung
+        public double Hoehe // public attribute um zu gucken ob der wert  >= 1 und <= 23 ist wenn es nicht passt kommt eine fehlermeldung
         {
             set
             {
-                if (value > 0) 
+                if (value >= 1 && value <= 23)
                 {
-                    hoehe = value; 
+                    hoehe = value;
                 }
                 else
                 {
-                    MessageBox.Show("Höhe muss mehr als 0 sein"); 
+                    throw new Exception("Die Höhe muss zwischen 1 und 23 liegen!");
                 }
             }
             get { return hoehe; }
         }
         private double breite; // private attribute mit korrekter eingabe
-        public double Breite // public attribute um zu gucken ob der wert über 0 wenn nein kommt fehlermeldung
+        public double Breite // public attribute um zu gucken ob der wert  >= 1 und <= 38 ist wenn es nicht passt kommt eine fehlermeldung
         {
             set
             {
-                if (value > 0)
+                if (value >= 1 && value <= 38)
                 {
                     breite = value;
                 }
                 else
                 {
-                    MessageBox.Show("Breite muss mehr als 0 sein");
+                    throw new Exception("Die Breite muss zwischen 1 und 38 liegen!");
                 }
             }
             get { return breite; }
         }
+        public int Farbe { get; set; }
+        public string Textinhalt { get; set; }
+        private double rand; // private attribute mit korrekter eingabe
+        public double Rand // public attribute um zu gucken ob der wert  >= 0 und <= 2 ist wenn es nicht passt kommt eine fehlermeldung
+        {
+            set
+            {
+                if (value >= 0 && value <= 2)
+                {
+                    rand = value;
+                }
+                else
+                {
+                    throw new Exception("Die Randdicke muss zwischen 0 und 2 liegen!");
+                }
+            }
+            get { return rand; }
+        }
         public double Umfang // berechnet umfang aus höhe und breite und speichert es
         {
-            get {
-                return 2 * (hoehe + breite);}
+            get
+            {
+                return 2 * (hoehe + breite);
+            }
         }
         public double Flaeche // berechnet fläche aus höhe und breite und speichert es
         {
@@ -67,8 +87,8 @@ namespace Rechteckprojekt
         public void Drehen()
         {
             double zwischenspeicher = hoehe; // methode zum drehen des rechteckes ändert einfach höhe mit breite und breite mit höhe
-            hoehe = breite;
-            breite = zwischenspeicher;
+            Hoehe = breite;
+            Breite = zwischenspeicher;
         }
     }
 }
