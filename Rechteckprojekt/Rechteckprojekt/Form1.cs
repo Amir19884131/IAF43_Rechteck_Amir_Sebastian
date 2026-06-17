@@ -21,5 +21,35 @@ namespace Rechteckprojekt
         {
 
         }
+
+        private void btnDrehen_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tbxBreite_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tbxHoehe_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbxFarben_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tbxTextinhalt_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tbxRand_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

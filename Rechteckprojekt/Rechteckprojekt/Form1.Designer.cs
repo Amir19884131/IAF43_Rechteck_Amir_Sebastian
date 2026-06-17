@@ -52,6 +52,16 @@
             tbxRand = new TextBox();
             lblRandCM = new Label();
             lblRand = new Label();
+            btnAdd = new Button();
+            btnRemove = new Button();
+            lbxRechtecke = new ListBox();
+            lblRechtecke = new Label();
+            menuStrip1 = new MenuStrip();
+            mnuMenu = new ToolStripMenuItem();
+            mnuOpen = new ToolStripMenuItem();
+            mnuSave = new ToolStripMenuItem();
+            mnuSaveUnder = new ToolStripMenuItem();
+            menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // btnZoomOut
@@ -85,6 +95,7 @@
             btnDrehen.TabIndex = 2;
             btnDrehen.Text = "Drehen";
             btnDrehen.UseVisualStyleBackColor = true;
+            btnDrehen.Click += btnDrehen_Click;
             // 
             // tbxBreite
             // 
@@ -93,6 +104,7 @@
             tbxBreite.Name = "tbxBreite";
             tbxBreite.Size = new Size(88, 23);
             tbxBreite.TabIndex = 3;
+            tbxBreite.TextChanged += tbxBreite_TextChanged;
             // 
             // tbxHoehe
             // 
@@ -101,6 +113,7 @@
             tbxHoehe.Name = "tbxHoehe";
             tbxHoehe.Size = new Size(88, 23);
             tbxHoehe.TabIndex = 4;
+            tbxHoehe.TextChanged += tbxHoehe_TextChanged;
             // 
             // tbxUmfang
             // 
@@ -264,6 +277,7 @@
             cbxFarben.Name = "cbxFarben";
             cbxFarben.Size = new Size(138, 23);
             cbxFarben.TabIndex = 22;
+            cbxFarben.SelectedIndexChanged += cbxFarben_SelectedIndexChanged;
             // 
             // lblExtra
             // 
@@ -290,6 +304,7 @@
             tbxTextinhalt.Name = "tbxTextinhalt";
             tbxTextinhalt.Size = new Size(139, 80);
             tbxTextinhalt.TabIndex = 25;
+            tbxTextinhalt.TextChanged += tbxTextinhalt_TextChanged;
             // 
             // lblTextinhalt
             // 
@@ -306,6 +321,7 @@
             tbxRand.Name = "tbxRand";
             tbxRand.Size = new Size(108, 23);
             tbxRand.TabIndex = 27;
+            tbxRand.TextChanged += tbxRand_TextChanged;
             // 
             // lblRandCM
             // 
@@ -325,11 +341,85 @@
             lblRand.TabIndex = 29;
             lblRand.Text = "Rand :";
             // 
+            // btnAdd
+            // 
+            btnAdd.Location = new Point(127, 831);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new Size(70, 49);
+            btnAdd.TabIndex = 30;
+            btnAdd.Text = "+";
+            btnAdd.UseVisualStyleBackColor = true;
+            // 
+            // btnRemove
+            // 
+            btnRemove.Location = new Point(194, 831);
+            btnRemove.Name = "btnRemove";
+            btnRemove.Size = new Size(72, 49);
+            btnRemove.TabIndex = 31;
+            btnRemove.Text = "-";
+            btnRemove.UseVisualStyleBackColor = true;
+            // 
+            // lbxRechtecke
+            // 
+            lbxRechtecke.FormattingEnabled = true;
+            lbxRechtecke.ItemHeight = 15;
+            lbxRechtecke.Location = new Point(128, 731);
+            lbxRechtecke.Name = "lbxRechtecke";
+            lbxRechtecke.Size = new Size(138, 94);
+            lbxRechtecke.TabIndex = 32;
+            // 
+            // lblRechtecke
+            // 
+            lblRechtecke.AutoSize = true;
+            lblRechtecke.Location = new Point(58, 731);
+            lblRechtecke.Name = "lblRechtecke";
+            lblRechtecke.Size = new Size(64, 15);
+            lblRechtecke.TabIndex = 33;
+            lblRechtecke.Text = "Rechtecke:";
+            // 
+            // menuStrip1
+            // 
+            menuStrip1.Items.AddRange(new ToolStripItem[] { mnuMenu });
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Size = new Size(1774, 24);
+            menuStrip1.TabIndex = 34;
+            menuStrip1.Text = "menuStrip1";
+            // 
+            // mnuMenu
+            // 
+            mnuMenu.DropDownItems.AddRange(new ToolStripItem[] { mnuOpen, mnuSave, mnuSaveUnder });
+            mnuMenu.Name = "mnuMenu";
+            mnuMenu.Size = new Size(50, 20);
+            mnuMenu.Text = "Menü";
+            // 
+            // mnuOpen
+            // 
+            mnuOpen.Name = "mnuOpen";
+            mnuOpen.Size = new Size(157, 22);
+            mnuOpen.Text = "Öffnen";
+            // 
+            // mnuSave
+            // 
+            mnuSave.Name = "mnuSave";
+            mnuSave.Size = new Size(157, 22);
+            mnuSave.Text = "Speichern";
+            // 
+            // mnuSaveUnder
+            // 
+            mnuSaveUnder.Name = "mnuSaveUnder";
+            mnuSaveUnder.Size = new Size(157, 22);
+            mnuSaveUnder.Text = "Speichern unter";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1774, 892);
+            Controls.Add(lblRechtecke);
+            Controls.Add(lbxRechtecke);
+            Controls.Add(btnRemove);
+            Controls.Add(btnAdd);
             Controls.Add(lblRand);
             Controls.Add(lblRandCM);
             Controls.Add(tbxRand);
@@ -360,9 +450,13 @@
             Controls.Add(btnDrehen);
             Controls.Add(btnZoomIn);
             Controls.Add(btnZoomOut);
+            Controls.Add(menuStrip1);
+            MainMenuStrip = menuStrip1;
             Name = "Form1";
             Text = "Form1";
             Load += Form1_Load;
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -398,5 +492,14 @@
         private TextBox tbxRand;
         private Label lblRandCM;
         private Label lblRand;
+        private Button btnAdd;
+        private Button btnRemove;
+        private ListBox lbxRechtecke;
+        private Label lblRechtecke;
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem mnuMenu;
+        private ToolStripMenuItem mnuOpen;
+        private ToolStripMenuItem mnuSave;
+        private ToolStripMenuItem mnuSaveUnder;
     }
 }
