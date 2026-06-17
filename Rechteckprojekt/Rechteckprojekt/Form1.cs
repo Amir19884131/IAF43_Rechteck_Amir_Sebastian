@@ -16,5 +16,10 @@ namespace Rechteckprojekt
         {
 
         }
+
+        private void btnZoomIn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
