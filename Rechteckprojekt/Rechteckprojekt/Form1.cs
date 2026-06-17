@@ -5,6 +5,7 @@ namespace Rechteckprojekt
         public GUI()
         {
             InitializeComponent();
+            btnRechteck.FlatStyle = FlatStyle.Flat; // rechteck eigentlich button auf flat setzen damit man nachher den rand ändern kann
         }
         Rechteck r = new Rechteck(); // erstellt objekt
 
@@ -57,6 +58,7 @@ namespace Rechteckprojekt
                 MessageBox.Show("ACHTUNG! " + ex.Message);
             }
         }
+
         private void AktualisiereGrafik()
         {
             btnRechteck.Width = Convert.ToInt32(r.Breite * 37.8); // für die größe der rechtecks zuständig länge und höhe damit es auch 1 cm ist auf dem bildschirm
@@ -64,6 +66,7 @@ namespace Rechteckprojekt
             btnRechteck.Left = 1050 - (btnRechteck.Width / 2); // für die zentrierung zuständig damit es schön dort rechts in der mitte ist 
             btnRechteck.Top = 445 - (btnRechteck.Height / 2);
         }
+
         private void tbxBreite_TextChanged(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(tbxBreite.Text)) // macht nicht weiter wenn das feld leer ist ist praktisch wenn der user eine ganze zahl neu schreiben will anstatt 200 eine 100 
@@ -87,6 +90,7 @@ namespace Rechteckprojekt
                 MessageBox.Show("ACHTUNG! " + ex.Message);
             }
         }
+
         private void tbxHoehe_TextChanged(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(tbxHoehe.Text)) // macht nicht weiter wenn das feld leer ist ist praktisch wenn der user eine ganze zahl neu schreiben will anstatt 200 eine 100 
@@ -173,12 +177,28 @@ namespace Rechteckprojekt
             }
         }
 
-        private void tbxTextinhalt_TextChanged(object sender, EventArgs e)
+        private void tbxRand_TextChanged(object sender, EventArgs e)
         {
-
+            if (string.IsNullOrWhiteSpace(tbxRand.Text)) // macht nicht mehr weiter mti dem code damit keine fehlermeldung kommt wenn man seine eingabe komplett löscht
+            {
+                return;
+            }
+            try
+            {
+                r.Rand = Convert.ToDouble(tbxRand.Text.Replace('.', ',')); // falls der user einen . anstatt einen , setzt ist das dank replace kein problem es wird perfekt umgewandelt 
+                btnRechteck.FlatAppearance.BorderSize = Convert.ToInt32(r.Rand * 37.8); // gibt dem rechteck eigentlich button den rand in cm 
+            }
+            catch (FormatException) // fehler der getriggert wird wenn ein compiler fehler kommt wenn die textbox leer ist oder buchstaben eingegeben werden
+            {
+                MessageBox.Show("Bitte geben Sie eine gültige Zahl ein!");
+            }
+            catch (Exception ex) // fehler der die direkte fehlermeldung aus der exception beim public attribut hier ausgibt 
+            {
+                MessageBox.Show("ACHTUNG! " + ex.Message);
+            }
         }
 
-        private void tbxRand_TextChanged(object sender, EventArgs e)
+        private void tbxTextinhalt_TextChanged(object sender, EventArgs e)
         {
 
         }
